@@ -69,6 +69,11 @@ export default async function SingleBlog({
 }
 
 async function fetchPost(id: string) {
+    try {
     const res = await fetch('https://trending-myth.koyeb.app/posts/' + id);
     return await res.json() as TrendBlogPost;
-  }
+    } catch (error) {
+        console.error(error);
+        throw new Error("Failed to fetch post");
+    }
+}

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
-import Link from 'next/link'
+import Header from "@/components/layouts/Header";
+import Footer from "@/components/layouts/Footer";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,19 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <header className="flex items-center justify-between p-4 bg-blue-500 text-white">
-      <Image
-      src="/intro.jpg" alt="Logo"
-                width={24}
-                height={24}
-                className="w-8 h-8"/>
-          <Link href="/" className="text-2xl font-bold">Trendy</Link>
-          <div></div>
-        </header>
+      <Header />
         {children}
-        <footer className="p-4 bg-gray-800 text-white text-center">
-          &copy; {new Date().getFullYear()} Trendy. All rights reserved. <Link href="https://www.linkedin.com/in/hazem-sobhy-78b270142/" target="_blank" className="font-bold">ZOZ</Link>
-        </footer>
+       <Footer />
         </body>
     </html>
   );
