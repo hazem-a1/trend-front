@@ -4,12 +4,11 @@ import { serialize } from "next-mdx-remote/serialize";
 import MDXContent from "@/components/MDXWrapper";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 
 
 export async function generateMetadata(
-    { params }: { params: { id: string },
-    parent: ResolvingMetadata
+    { params }: { params: { id: string }
   }): Promise<Metadata> {
     const post = await fetchPost(params.id);
     const description = `${post.blogPost.replace(/\*\*/g, "").slice(0, 50)} ...`;
