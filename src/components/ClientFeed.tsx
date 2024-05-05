@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { BlogCard } from './BlogCard';
-import { TrendBlogPosts, TrendBlogPostsResponse } from '@/types/posts';
+import { TrendBlogPostsResponse } from '@/types/posts';
+import { usePostContext } from '@/store/postProvider';
 
 export default function ClientBlog() {
-    const [hasMore, setHasMore] = useState(true);
+  const { posts, setPosts } = usePostContext();
+  const [hasMore, setHasMore] = useState(true);
 
-  const [posts, setPosts] = useState<TrendBlogPosts>([]);
   const [page, setPage] = useState(2);
   const loadMoreRef = useRef(null);
 
@@ -26,8 +27,6 @@ export default function ClientBlog() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setPage((prevPage) => prevPage + 1);
-    console.log("Intersecting! Fetching more posts...");
-
         }
       });
     }, options);
@@ -44,10 +43,10 @@ export default function ClientBlog() {
   }, [hasMore]);
 
   async function fetchPosts() {
-    const res = await fetch(`https://trending-myth.koyeb.app/posts?page=${page}&size=10&sort=date&order=asc`);
+    const res = await fetch(`/api?page=${page}&size=10&sort=lastupdated&order=desc`);
     const json = await res.json() as TrendBlogPostsResponse;
     
-    setPosts((prevPosts) => [...prevPosts, ...json.posts]);
+    setPosts(posts.concat(json.posts));
     // If the number of posts fetched is less than the requested size, we've reached the end of the feed
     if (json.posts.length < 10) {
         setHasMore(false);
