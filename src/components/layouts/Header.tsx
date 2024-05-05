@@ -3,18 +3,22 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="flex items-center justify-between p-4 bg-blue-500 text-white">
+        <header >
+                <Link href="/" >
+            <div className="flex items-center justify-between p-4 bg-blue-500 text-white">
+
+           
         <Image
-            src="/intro.jpg"
+            src="/favicon.svg"
             alt="Logo"
             width={24}
             height={24}
             className="w-8 h-8"
         />
-        <Link href="/" className="text-2xl font-bold">
-            Trendy
-        </Link>
+            <h2 className="text-2xl font-bold">Trendy</h2>
         <div></div>
+        </div>
+        </Link>
         </header>
     );
     }   

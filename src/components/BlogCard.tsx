@@ -25,7 +25,7 @@ export const BlogCard = ({ _id, title, traffic, image, date, blogPost }: {
             <div className="prose prose-lg mb-8">{blogPost.slice(0, 50).replace("**", "")}...</div>
             <div className="flex justify-end mt-4">
                 <Link href={`/blog/${_id}`}>
-                    <div className="bg-orange-500 hover:bg-orange-700 text-white py-1 px-2 rounded-lg">Learn More</div>
+                    <div className="bg-sky-500 hover:bg-sky-700 text-white-bold py-1 px-2 rounded-lg">Learn More</div>
                 </Link>
             </div>
         </div>

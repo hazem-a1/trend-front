@@ -53,7 +53,7 @@ export default async function SingleBlog({
                 <MDXContent source={source}/>
                 </div>
             </Suspense>
-            <div className="mt-8">
+            {post?.articles?.length && <div className="mt-8">
                 <h2 className="text-2xl font-bold mb-4">Related Topics</h2>
                 {post.articles?.map((article, index) => (
                     <div key={index} className="mb-4">
@@ -63,14 +63,14 @@ export default async function SingleBlog({
                         <p>Source: {article.source}</p>
                     </div>
                 ))}
-            </div>
+            </div>}
         </div>
     );
 }
 
 async function fetchPost(id: string) {
     try {
-    const res = await fetch('https://trending-myth.koyeb.app/posts/' + id);
+    const res = await fetch(`${process.env.API_URL}/posts/${id}`);
     return await res.json() as TrendBlogPost;
     } catch (error) {
         console.error(error);
