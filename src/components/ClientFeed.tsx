@@ -13,7 +13,7 @@ export default function ClientBlog() {
   const loadMoreRef = useRef(null);
 
   useEffect(() => {
-    fetchPosts();
+    void fetchPosts();
   }, [page]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function ClientBlog() {
   }, [hasMore]);
 
   async function fetchPosts() {
-    const res = await fetch(`/api?page=${page}&size=10&sort=lastupdated&order=desc`);
+    const res = await fetch(`/api?page=${page}&size=10&sort=lastupdated&order=desc`, { cache: 'no-store' });
     const json = await res.json() as TrendBlogPostsResponse;
     
     setPosts(posts.concat(json.posts));

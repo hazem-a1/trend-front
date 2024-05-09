@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const sort = request.nextUrl.searchParams.get('sort') || "lastupdated";
     const order = request.nextUrl.searchParams.get('order') || "desc";
 
-    const data = await fetch(`${process.env.API_URL}/posts?page=${page}&size=${size}&sort=${sort}&order=${order}`);
+    const data = await fetch(`${process.env.API_URL}/posts?page=${page}&size=${size}&sort=${sort}&order=${order}`, { cache: 'no-store' });
     const json = await data.json();
     if (!data.ok) {
       return NextResponse.json({ error: "Some thing went wrong" }, { status: data.status });
