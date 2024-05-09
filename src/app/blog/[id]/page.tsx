@@ -4,7 +4,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import MDXContent from "@/components/MDXWrapper";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from 'next'
+import next, { Metadata } from 'next'
 
 
 export async function generateMetadata(
@@ -16,7 +16,21 @@ export async function generateMetadata(
     return {
         title: post.title,
         description: description,
-        keywords: keywords
+        keywords: keywords,
+        openGraph: {
+            description: description,
+            title: post.title,
+            type: 'article',
+            url: `https://trend-front.vercel.app/blog/${params.id}`,
+            images: [
+                {
+                    url: "https://trend-front.vercel.app/favicon.svg",
+                    width: 800,
+                    height: 600,
+                    alt: post.title,
+                }
+            ],
+        }
     }
 }
 
@@ -70,7 +84,7 @@ export default async function SingleBlog({
 
 async function fetchPost(id: string) {
     try {
-    const res = await fetch(`${process.env.API_URL}/posts/${id}`);
+    const res = await fetch(`${process.env.API_URL}/posts/${id}`, { cache: 'no-store' });
     return await res.json() as TrendBlogPost;
     } catch (error) {
         console.error(error);
