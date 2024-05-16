@@ -41,6 +41,6 @@ export default async function Home() {
 }
 
 async function fetchPosts() {
-  const res = await fetch(`${process.env.API_URL}/posts?page=1&size=10&sort=lastupdated&order=desc`);
+  const res = await fetch(`${process.env.API_URL}/posts?page=1&size=10&sort=lastupdated&order=desc`, { cache: "no-store" });
   return res.json() as Promise<TrendBlogPostsResponse>
 }
