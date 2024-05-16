@@ -4,7 +4,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import MDXContent from "@/components/MDXWrapper";
 import Image from "next/image";
 import Link from "next/link";
-import next, { Metadata } from 'next'
+import { Metadata } from 'next'
 
 
 export async function generateMetadata(
@@ -84,7 +84,7 @@ export default async function SingleBlog({
 
 async function fetchPost(id: string) {
     try {
-    const res = await fetch(`${process.env.API_URL}/posts/${id}`, { cache: 'no-store' });
+    const res = await fetch(`${process.env.API_URL}/posts/${id}`);
     return await res.json() as TrendBlogPost;
     } catch (error) {
         console.error(error);
