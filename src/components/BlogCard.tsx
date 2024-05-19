@@ -10,7 +10,7 @@ export const BlogCard = ({ _id, title, traffic, image, date, blogPost }: {
     blogPost: string;
 }) => {
     return (
-        <div className="flex flex-col items-center justify-between p-4 shadow-md bg-white dark:bg-zinc-800 rounded-lg bg-clip-padding mt-1">
+        <div className="flex flex-col items-center justify-between p-4 shadow-md bg-white dark:bg-zinc-800 rounded-lg bg-clip-padding mt-1 animate-fade-up animate-once">
             <h1 className="text-3xl font-bold mb-4">{title}</h1>
             <p className="text-zinc-500">Traffic: {traffic}</p>
             {image && (

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SearchResultCard({ result }: { result: TrendBlogPost }) {
     return (
-        <li className="mb-1 bg-blue-500">
+        <li className="mb-1 bg-blue-500 animate-fade-left animate-once animate-ease-out">
             <Link href={`/blog/${result._id}`} className="block p-4 rounded-lg shadow-lg hover:bg-black-100 transition-colors duration-200">
                 <h2 className="text-xl font-bold mb-2">{result.title}</h2>
                 <div className="mt-2 text-sm">

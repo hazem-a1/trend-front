@@ -46,7 +46,7 @@ export default async function SingleBlog({
     const source = await serialize(post.blogPost);
     return (
         
-         <div className="max-w-2xl mx-auto py-8 px-4 md:px-0">
+         <div className="max-w-2xl mx-auto py-8 px-4 md:px-0 animate-fade-left animate-once animate-ease-out">
             <div className="bg-inherit shadow rounded-lg p-6 mb-8 flex items-center">
         {post.image && (
             <Image

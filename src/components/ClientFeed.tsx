@@ -59,7 +59,12 @@ return (
             <BlogCard key={post._id} {...post} />
         ))}
         {hasMore ? (
-            <div ref={loadMoreRef} className="load-more">Load more...</div>
+          
+            <div ref={loadMoreRef}>
+              <svg  className="animate-spin animate-infinite animate-ease-out h-5 w-5 mr-3 " viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              </svg>
+              </div>
         ) : (
             <div>{`You've reached the end of the feed.`}</div>
         )}
