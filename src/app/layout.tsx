@@ -1,10 +1,12 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import { PostProvider } from "@/store/postProvider";
-import { GoogleTagManager } from '@next/third-parties/google'
+import GoogleAnalytics from "@/components/google-analytics/google-analytics";
+import CookieBanner from "@/components/CookieBanner/cookie-banner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,9 +37,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId={process.env.GTM_ID || 'G-XCGERLS6CB'} />
+      <Suspense fallback={null}>
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.GTM_ID || 'G-XCGERLS6CB'} />
+      </Suspense>
       <body className={inter.className}>
         <Header />
+          <CookieBanner />
         <PostProvider>
           {children}
         </PostProvider>
